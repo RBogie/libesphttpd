@@ -13,6 +13,7 @@ extern "C" {
 
 #ifdef CONFIG_ESPHTTPD_USE_ESPFS
 #include "httpd.h"
+#include "espfs.h"
 /**
  * The template substitution callback.
  * Returns CGI_MORE if more should be sent within the token, CGI_DONE otherwise.
@@ -21,6 +22,8 @@ typedef CgiStatus (* TplCallback)(HttpdConnData *connData, char *token, void **a
 
 CgiStatus cgiEspFsHook(HttpdConnData *connData);
 CgiStatus ICACHE_FLASH_ATTR cgiEspFsTemplate(HttpdConnData *connData);
+
+void setHttpdEspfsInstance(EspFs* instance);
 
 /**
  * @return 1 upon success, 0 upon failure
